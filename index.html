@@ -453,7 +453,7 @@ footer b{color:var(--gold);font-weight:500;font-style:normal;}
       <p class="lede">Prosíme o vyplnění do <strong style="color:var(--gold);font-style:normal;">30. července 2026</strong>.</p>
     </div>
 
-    <form class="fw" id="rsvpForm" target="hidden_iframe"
+    <form class="fw" id="rsvpForm"
       action="https://docs.google.com/forms/d/e/1FAIpQLSfDmo2PiHZpnrloIEHJZNrBWT9-urkS-7Hx3gyIe1hK4dr1_A/formResponse"
       method="POST">
 
@@ -511,7 +511,6 @@ footer b{color:var(--gold);font-weight:500;font-style:normal;}
       <h3>Děkujeme!</h3>
       <p>Vaše odpověď byla úspěšně odeslána. Těšíme se na vás!</p>
     </div>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 </section>
 
@@ -548,11 +547,21 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown,30000);
 
-document.getElementById('rsvpForm').addEventListener('submit',function(){
-  setTimeout(function(){
-    document.getElementById('rsvpForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  },700);
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var data = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: data
+  }).then(function() {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }).catch(function() {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  });
 });
 </script>
 </body>
