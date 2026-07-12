@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendulka &amp; Lukáš | 26. 9. 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF7;
+  --bg2:#F4EFE4;
+  --gold:#7A5828;
+  --gold2:#9A7438;
+  --gold3:#C4A060;
+  --line:rgba(196,160,96,0.28);
+  --txt:#6A5030;
+  --txt2:#9A8060;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--txt);font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.7;}
+.wrap{max-width:660px;margin:0 auto;padding:0 28px;}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--bg);}
+.flora{position:absolute;pointer-events:none;}
+.flora-tl{top:0;left:0;width:min(230px,30%);height:58%;}
+.flora-tr{top:0;right:0;width:min(250px,32%);height:62%;}
+.flora-bl{bottom:0;left:0;width:min(220px,28%);height:55%;}
+.flora-br{bottom:0;right:0;width:min(220px,28%);height:52%;}
+.hero-content{position:relative;z-index:1;padding:80px 32px;}
+.invite{font-style:italic;font-size:20px;color:var(--txt2);margin-bottom:30px;}
+.name{display:block;font-size:clamp(54px,11.5vw,90px);font-weight:500;letter-spacing:0.22em;color:var(--gold);line-height:1.05;}
+.amp{display:block;font-style:italic;font-weight:400;font-size:clamp(30px,5vw,46px);color:var(--gold2);margin:8px 0;}
+.hero-div{width:42px;height:1px;background:var(--gold3);margin:26px auto;}
+.hdate{font-size:clamp(32px,5.5vw,48px);color:var(--gold);}
+.htime{font-style:italic;font-size:22px;color:var(--txt2);margin-top:8px;}
+.hvenue{font-style:italic;font-size:19px;color:var(--txt2);margin-top:6px;line-height:1.55;}
+
+/* countdown */
+.countdown{display:flex;align-items:flex-start;justify-content:center;gap:8px;margin-top:32px;}
+.cd-unit{text-align:center;min-width:52px;}
+.cd-num{display:block;font-size:34px;font-weight:500;color:var(--gold);line-height:1;}
+.cd-lbl{display:block;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt2);margin-top:5px;}
+.cd-sep{font-size:28px;color:var(--gold3);line-height:1;padding-top:3px;opacity:.6;}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;text-align:center;padding:16px 0;background:var(--bg2);border-bottom:1px solid var(--line);backdrop-filter:blur(4px);}
+.nav a{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--txt2);text-decoration:none;margin:0 14px;transition:color .2s;}
+.nav a:hover{color:var(--gold);}
+
+/* ── SECTIONS ── */
+section{padding:78px 0;}
+.alt{background:var(--bg2);}
+.sh{text-align:center;margin-bottom:46px;}
+.ey{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--txt2);margin-bottom:12px;}
+.st{font-size:35px;font-weight:500;color:var(--gold);}
+.lede{font-style:italic;color:var(--txt2);margin-top:10px;font-size:17px;}
+
+/* ── PLACE ── */
+.place-body{text-align:center;}
+.place-name{font-size:26px;font-weight:500;color:var(--gold);margin-bottom:6px;}
+.place-addr{font-style:italic;font-size:18px;color:var(--txt2);line-height:1.6;margin-bottom:22px;}
+.map-btn{
+  display:inline-block;
+  padding:11px 28px;
+  border:1px solid var(--gold3);
+  font-family:'Jost',sans-serif;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;
+  transition:all .22s;
+}
+.map-btn:hover{background:var(--gold);color:#FAFAF7;}
+.place-note{font-style:italic;font-size:15px;color:var(--txt2);margin-top:22px;}
+
+/* ── TIMELINE ── */
+.tl{max-width:450px;margin:0 auto;}
+.trow{display:grid;grid-template-columns:72px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);}
+.trow:last-child{border-bottom:none;}
+.ttime{font-size:26px;color:var(--gold2);padding-top:2px;}
+.tlbl{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.tdesc{font-style:italic;font-size:15px;color:var(--txt2);}
+
+/* ── INFO CARDS ── */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);max-width:620px;margin:0 auto;border:1px solid var(--line);}
+.card{background:var(--bg2);padding:30px 26px;}
+.card.wide{grid-column:1/-1;}
+.card-icon{font-size:20px;margin-bottom:10px;}
+.card h3{font-size:20px;font-weight:500;color:var(--gold);margin-bottom:9px;}
+.card p{font-style:italic;font-size:15px;color:var(--txt2);line-height:1.65;}
+.card p+p{margin-top:6px;}
+@media(max-width:520px){.cards{grid-template-columns:1fr;}.card.wide{grid-column:1;}}
+
+/* ── GIFTS ── */
+.gifts-text{max-width:500px;margin:0 auto;text-align:center;font-style:italic;font-size:18px;color:var(--txt2);line-height:1.85;}
+.gifts-text em{color:var(--gold);font-style:normal;font-weight:500;}
+
+/* ── FORM ── */
+.fw{max-width:490px;margin:0 auto;border:1px solid var(--line);padding:38px 34px;background:var(--bg);}
+.fd{margin-bottom:21px;}
+.fd label{display:block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);margin-bottom:7px;}
+.fd input[type=text],.fd input[type=number],.fd textarea{width:100%;border:none;border-bottom:1px solid var(--line);background:transparent;padding:8px 2px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);outline:none;transition:border-color .2s;}
+.fd input:focus,.fd textarea:focus{border-bottom-color:var(--gold2);}
+.fd textarea{resize:vertical;min-height:60px;}
+.rg{display:flex;gap:18px;flex-wrap:wrap;margin-top:4px;}
+.ro{display:flex;align-items:center;gap:6px;font-style:italic;font-size:16px;color:var(--txt2);cursor:pointer;}
+.ro input{accent-color:var(--gold2);}
+.sbtn{width:100%;padding:13px;margin-top:10px;background:transparent;border:1px solid var(--gold3);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .22s;}
+.sbtn:hover{background:var(--gold);color:#FAFAF7;border-color:var(--gold);}
+.fn{font-style:italic;font-size:12px;color:var(--txt2);text-align:center;margin-top:13px;}
+.fs{display:none;text-align:center;padding:40px;border:1px solid var(--line);max-width:490px;margin:0 auto;}
+.fs h3{font-size:27px;color:var(--gold);margin-bottom:8px;}
+.fs p{font-style:italic;color:var(--txt2);}
+
+/* ── CONTACTS ── */
+.cts{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+.ct h4{font-size:21px;font-weight:500;color:var(--gold);}
+.ct p{font-style:italic;font-size:14px;color:var(--txt2);}
+
+footer{text-align:center;padding:54px 24px 70px;font-style:italic;color:var(--txt2);font-size:18px;}
+footer b{color:var(--gold);font-weight:500;font-style:normal;}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+
+<!-- Top Left: Daisy + Blue forget-me-nots -->
+<svg class="flora flora-tl" viewBox="0 0 200 380" xmlns="http://www.w3.org/2000/svg">
+  <path d="M90,28 C88,50 82,80 74,115" stroke="#88A080" stroke-width="2.2" fill="none" opacity="0.50"/>
+  <g transform="translate(90,20)">
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(30)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(90)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(150)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(210)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(270)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(300)"/>
+    <ellipse cx="0" cy="-21" rx="4.5" ry="15" fill="#EDEAE0" opacity="0.80" transform="rotate(330)"/>
+    <circle r="12" fill="#E8C840" opacity="0.80"/>
+    <circle r="7" fill="#C8A820" opacity="0.68"/>
+  </g>
+  <path d="M32,128 C22,178 16,235 10,298 C6,342 4,368 6,380" stroke="#88A080" stroke-width="1.8" fill="none" opacity="0.44"/>
+  <path d="M28,158 C52,143 88,150 112,162" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.38"/>
+  <path d="M20,222 C44,207 80,213 103,227" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.36"/>
+  <path d="M13,290 C35,275 66,281 86,295" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.34"/>
+  <g transform="translate(112,162)">
+    <ellipse cx="0" cy="-9" rx="6.5" ry="9" fill="#8090B8" opacity="0.70" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-9" rx="6.5" ry="9" fill="#8090B8" opacity="0.70" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-9" rx="6.5" ry="9" fill="#8090B8" opacity="0.70" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-9" rx="6.5" ry="9" fill="#8090B8" opacity="0.70" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-9" rx="6.5" ry="9" fill="#8090B8" opacity="0.70" transform="rotate(288)"/>
+    <circle r="3.5" fill="#F0D050" opacity="0.85"/>
+  </g>
+  <g transform="translate(88,176)">
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8898C0" opacity="0.62" transform="rotate(18)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8898C0" opacity="0.62" transform="rotate(90)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8898C0" opacity="0.62" transform="rotate(162)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8898C0" opacity="0.62" transform="rotate(234)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8898C0" opacity="0.62" transform="rotate(306)"/>
+    <circle r="3" fill="#F0D050" opacity="0.82"/>
+  </g>
+  <g transform="translate(103,227)">
+    <ellipse cx="0" cy="-8" rx="5.5" ry="8" fill="#7888B4" opacity="0.66" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-8" rx="5.5" ry="8" fill="#7888B4" opacity="0.66" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-8" rx="5.5" ry="8" fill="#7888B4" opacity="0.66" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-8" rx="5.5" ry="8" fill="#7888B4" opacity="0.66" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-8" rx="5.5" ry="8" fill="#7888B4" opacity="0.66" transform="rotate(288)"/>
+    <circle r="3" fill="#F0D050" opacity="0.83"/>
+  </g>
+  <g transform="translate(86,295)">
+    <ellipse cx="0" cy="-7.5" rx="5" ry="7.5" fill="#8090B8" opacity="0.62" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-7.5" rx="5" ry="7.5" fill="#8090B8" opacity="0.62" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7.5" rx="5" ry="7.5" fill="#8090B8" opacity="0.62" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7.5" rx="5" ry="7.5" fill="#8090B8" opacity="0.62" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7.5" rx="5" ry="7.5" fill="#8090B8" opacity="0.62" transform="rotate(288)"/>
+    <circle r="2.5" fill="#F0D050" opacity="0.82"/>
+  </g>
+  <ellipse cx="6" cy="380" rx="4" ry="7" fill="#8090B8" opacity="0.40"/>
+</svg>
+
+<!-- Top Right: Yellow seed branch -->
+<svg class="flora flora-tr" viewBox="0 0 230 400" xmlns="http://www.w3.org/2000/svg">
+  <path d="M210,0 C195,38 182,78 168,122 C154,167 140,205 126,250 C112,295 99,332 86,374" stroke="#88A080" stroke-width="2" fill="none" opacity="0.50"/>
+  <path d="M200,30 C214,18 226,22 230,12" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.38"/>
+  <path d="M186,72 C201,58 218,62 228,52" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.37"/>
+  <path d="M171,116 C187,102 205,106 217,97" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.36"/>
+  <path d="M156,162 C171,148 188,152 200,143" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.34"/>
+  <path d="M141,208 C155,194 172,198 183,189" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.33"/>
+  <path d="M127,254 C140,240 156,244 167,235" stroke="#88A080" stroke-width="1.4" fill="none" opacity="0.31"/>
+  <ellipse cx="206" cy="18" rx="8" ry="14" fill="#C8B838" opacity="0.74" transform="rotate(-22,206,18)"/>
+  <ellipse cx="192" cy="58" rx="8" ry="14" fill="#D0C040" opacity="0.72" transform="rotate(-18,192,58)"/>
+  <ellipse cx="177" cy="100" rx="8" ry="13" fill="#C8B438" opacity="0.70" transform="rotate(-14,177,100)"/>
+  <ellipse cx="162" cy="143" rx="7.5" ry="13" fill="#D0BC40" opacity="0.68" transform="rotate(-10,162,143)"/>
+  <ellipse cx="148" cy="186" rx="7" ry="12" fill="#C8B040" opacity="0.66" transform="rotate(-7,148,186)"/>
+  <ellipse cx="133" cy="230" rx="7" ry="12" fill="#C8B438" opacity="0.64" transform="rotate(-4,133,230)"/>
+  <ellipse cx="120" cy="272" rx="6.5" ry="11" fill="#D0BC40" opacity="0.61" transform="rotate(-2,120,272)"/>
+  <ellipse cx="107" cy="312" rx="6.5" ry="11" fill="#C4B038" opacity="0.58" transform="rotate(0,107,312)"/>
+  <ellipse cx="96" cy="352" rx="6" ry="10" fill="#C8B440" opacity="0.55" transform="rotate(2,96,352)"/>
+  <ellipse cx="228" cy="11" rx="6" ry="10" fill="#C8B438" opacity="0.63" transform="rotate(12,228,11)"/>
+  <ellipse cx="217" cy="18" rx="5.5" ry="10" fill="#D0C040" opacity="0.60" transform="rotate(15,217,18)"/>
+  <ellipse cx="226" cy="50" rx="6" ry="10" fill="#C8B438" opacity="0.60" transform="rotate(18,226,50)"/>
+  <ellipse cx="214" cy="57" rx="5.5" ry="9.5" fill="#C0AC34" opacity="0.58" transform="rotate(20,214,57)"/>
+  <ellipse cx="216" cy="95" rx="5.5" ry="9.5" fill="#C8B440" opacity="0.57" transform="rotate(16,216,95)"/>
+  <ellipse cx="204" cy="101" rx="5" ry="9" fill="#D0BC40" opacity="0.55" transform="rotate(18,204,101)"/>
+  <ellipse cx="199" cy="141" rx="5" ry="9" fill="#C8B438" opacity="0.54" transform="rotate(14,199,141)"/>
+  <ellipse cx="187" cy="147" rx="4.5" ry="8.5" fill="#C0AC34" opacity="0.52" transform="rotate(16,187,147)"/>
+  <ellipse cx="182" cy="187" rx="4.5" ry="8.5" fill="#C8B440" opacity="0.51" transform="rotate(12,182,187)"/>
+  <ellipse cx="170" cy="193" rx="4" ry="8" fill="#D0BC40" opacity="0.49" transform="rotate(14,170,193)"/>
+  <ellipse cx="165" cy="233" rx="4" ry="8" fill="#C8B438" opacity="0.48" transform="rotate(10,165,233)"/>
+  <ellipse cx="153" cy="239" rx="4" ry="7.5" fill="#C0AC34" opacity="0.46" transform="rotate(12,153,239)"/>
+</svg>
+
+<!-- Bottom Left: Large pink flower -->
+<svg class="flora flora-bl" viewBox="0 0 200 360" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18,0 C16,30 14,60 12,92" stroke="#88A080" stroke-width="1.5" fill="none" opacity="0.36"/>
+  <g transform="translate(18,8)">
+    <ellipse cx="0" cy="-6.5" rx="4.5" ry="6.5" fill="#7888B4" opacity="0.57" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-6.5" rx="4.5" ry="6.5" fill="#7888B4" opacity="0.57" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-6.5" rx="4.5" ry="6.5" fill="#7888B4" opacity="0.57" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-6.5" rx="4.5" ry="6.5" fill="#7888B4" opacity="0.57" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-6.5" rx="4.5" ry="6.5" fill="#7888B4" opacity="0.57" transform="rotate(288)"/>
+    <circle r="2.5" fill="#F0D050" opacity="0.80"/>
+  </g>
+  <path d="M30,110 C26,138 22,162 18,188" stroke="#88A080" stroke-width="1.5" fill="none" opacity="0.34"/>
+  <g transform="translate(30,118)">
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8090B8" opacity="0.60" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8090B8" opacity="0.60" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8090B8" opacity="0.60" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8090B8" opacity="0.60" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="7" fill="#8090B8" opacity="0.60" transform="rotate(288)"/>
+    <circle r="3" fill="#F0D050" opacity="0.83"/>
+  </g>
+  <path d="M82,198 C78,232 72,268 64,310" stroke="#88A080" stroke-width="2.5" fill="none" opacity="0.46"/>
+  <path d="M76,238 C56,228 42,238 46,256 C50,270 76,266 76,238Z" fill="#88A080" opacity="0.25"/>
+  <g transform="translate(82,198)">
+    <path d="M0,0 C-25,-28 -27,-65 0,-88 C27,-65 25,-28 0,0" fill="#D898B0" opacity="0.60"/>
+    <path d="M0,0 C-25,-28 -27,-65 0,-88 C27,-65 25,-28 0,0" fill="#D898B0" opacity="0.60" transform="rotate(60)"/>
+    <path d="M0,0 C-25,-28 -27,-65 0,-88 C27,-65 25,-28 0,0" fill="#D898B0" opacity="0.57" transform="rotate(120)"/>
+    <path d="M0,0 C-25,-28 -27,-65 0,-88 C27,-65 25,-28 0,0" fill="#D898B0" opacity="0.55" transform="rotate(180)"/>
+    <path d="M0,0 C-25,-28 -27,-65 0,-88 C27,-65 25,-28 0,0" fill="#D898B0" opacity="0.55" transform="rotate(240)"/>
+    <path d="M0,0 C-25,-28 -27,-65 0,-88 C27,-65 25,-28 0,0" fill="#D898B0" opacity="0.57" transform="rotate(300)"/>
+    <circle r="17" fill="#5A7850" opacity="0.66"/>
+    <circle r="10" fill="#3C5432" opacity="0.62"/>
+    <circle cx="5" cy="-9" r="2.5" fill="#C8A030" opacity="0.76"/>
+    <circle cx="-7" cy="-7" r="2.5" fill="#C8A030" opacity="0.76"/>
+    <circle cx="0" cy="-12" r="2.5" fill="#C8A030" opacity="0.76"/>
+    <circle cx="9" cy="-2" r="2" fill="#C8A030" opacity="0.66"/>
+    <circle cx="-10" cy="-2" r="2" fill="#C8A030" opacity="0.66"/>
+  </g>
+</svg>
+
+<!-- Bottom Right: Yellow wildflowers + Blue bellflowers -->
+<svg class="flora flora-br" viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg">
+  <path d="M72,340 C70,305 74,278 78,248 C82,220 84,198 82,172" stroke="#88A080" stroke-width="1.8" fill="none" opacity="0.46"/>
+  <path d="M98,340 C96,308 100,282 103,254 C106,228 108,206 106,182" stroke="#88A080" stroke-width="1.5" fill="none" opacity="0.40"/>
+  <path d="M122,340 C120,314 124,292 128,270 C132,250 134,234 132,216" stroke="#88A080" stroke-width="1.5" fill="none" opacity="0.36"/>
+  <g transform="translate(82,172)">
+    <ellipse cx="0" cy="-8.5" rx="6" ry="8.5" fill="#C8B840" opacity="0.73" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-8.5" rx="6" ry="8.5" fill="#C8B840" opacity="0.73" transform="rotate(90)"/>
+    <ellipse cx="0" cy="-8.5" rx="6" ry="8.5" fill="#C8B840" opacity="0.73" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8.5" rx="6" ry="8.5" fill="#C8B840" opacity="0.73" transform="rotate(270)"/>
+    <circle r="5" fill="#E8D060" opacity="0.80"/>
+  </g>
+  <g transform="translate(106,182)">
+    <ellipse cx="0" cy="-7.5" rx="5.5" ry="7.5" fill="#D0C048" opacity="0.68" transform="rotate(45)"/>
+    <ellipse cx="0" cy="-7.5" rx="5.5" ry="7.5" fill="#D0C048" opacity="0.68" transform="rotate(135)"/>
+    <ellipse cx="0" cy="-7.5" rx="5.5" ry="7.5" fill="#D0C048" opacity="0.68" transform="rotate(225)"/>
+    <ellipse cx="0" cy="-7.5" rx="5.5" ry="7.5" fill="#D0C048" opacity="0.68" transform="rotate(315)"/>
+    <circle r="4.5" fill="#E0C850" opacity="0.77"/>
+  </g>
+  <ellipse cx="78" cy="216" rx="4.5" ry="7" fill="#C8B840" opacity="0.52" transform="rotate(-12,78,216)"/>
+  <ellipse cx="100" cy="228" rx="4" ry="6.5" fill="#C0B038" opacity="0.48" transform="rotate(6,100,228)"/>
+  <ellipse cx="124" cy="214" rx="4" ry="7" fill="#C8B840" opacity="0.46" transform="rotate(-4,124,214)"/>
+  <path d="M160,340 C158,310 154,282 150,256 C146,232 144,210 146,188" stroke="#88A080" stroke-width="1.5" fill="none" opacity="0.38"/>
+  <path d="M185,340 C183,315 180,290 177,266 C174,244 172,225 174,206" stroke="#88A080" stroke-width="1.5" fill="none" opacity="0.34"/>
+  <g transform="translate(146,188) rotate(-16)">
+    <path d="M0,-6 C-13,-5 -19,7 -17,21 C-15,32 -5,38 0,38 C5,38 15,32 17,21 C19,7 13,-5 0,-6Z" fill="#90A8C8" opacity="0.65"/>
+    <line x1="0" y1="-6" x2="0" y2="-14" stroke="#88A080" stroke-width="1.5" opacity="0.42"/>
+  </g>
+  <g transform="translate(174,206) rotate(-10)">
+    <path d="M0,-5 C-11,-4 -16,6 -14,19 C-12,29 -4,35 0,35 C4,35 12,29 14,19 C16,6 11,-4 0,-5Z" fill="#9AAED4" opacity="0.61"/>
+    <line x1="0" y1="-5" x2="0" y2="-13" stroke="#88A080" stroke-width="1.5" opacity="0.38"/>
+  </g>
+  <g transform="translate(160,240) rotate(-8)">
+    <ellipse cx="0" cy="9" rx="7" ry="11" fill="#88A0C0" opacity="0.56"/>
+    <line x1="0" y1="-2" x2="0" y2="-10" stroke="#88A080" stroke-width="1.4" opacity="0.36"/>
+  </g>
+  <path d="M140,280 C122,268 108,276 112,294 C116,308 140,304 140,280Z" fill="#88A080" opacity="0.22"/>
+  <path d="M168,300 C152,290 140,298 143,314 C146,326 168,322 168,300Z" fill="#88A080" opacity="0.20"/>
+</svg>
+
+  <div class="hero-content">
+    <p class="invite">Zveme Vás na naši svatbu</p>
+    <span class="name">VENDULKA</span>
+    <span class="amp">a</span>
+    <span class="name">LUKÁŠ</span>
+    <div class="hero-div"></div>
+    <div class="hdate">26.09.2026</div>
+    <div class="htime">15:00</div>
+    <div class="hvenue">Penzion Fryčovice, Frýdek – Místek</div>
+    <div class="countdown" id="countdown">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">—</span><span class="cd-lbl">dní</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-hours">—</span><span class="cd-lbl">hodin</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-mins">—</span><span class="cd-lbl">minut</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <a href="#misto">Místo</a>
+  <a href="#program">Program</a>
+  <a href="#info">Informace</a>
+  <a href="#dary">Dary</a>
+  <a href="#rsvp">RSVP</a>
+</nav>
+
+<!-- ══ MÍSTO ══ -->
+<section id="misto">
+  <div class="wrap">
+    <div class="sh">
+      <div class="ey">Kde nás najdete</div>
+      <h2 class="st">Místo konání</h2>
+    </div>
+    <div class="place-body">
+      <div class="place-name">Penzion Fryčovice</div>
+      <div class="place-addr">
+        Fryčovice 307<br>
+        739 45 Frýdek – Místek
+      </div>
+      <a class="map-btn" href="https://maps.google.com/?q=Fryčovice+307,+739+45+Frýdek-Místek" target="_blank" rel="noopener">
+        Otevřít v Google Maps ↗
+      </a>
+      <p class="place-note">Informace k dopravě a parkování doplníme.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAM ══ -->
+<section id="program" class="alt">
+  <div class="wrap">
+    <div class="sh">
+      <div class="ey">Co nás čeká</div>
+      <h2 class="st">Program dne</h2>
+    </div>
+    <div class="tl">
+      <div class="trow">
+        <div class="ttime">14:00</div>
+        <div><div class="tlbl">Příchod hostů</div><div class="tdesc">Uvítání a přípitkem na dobré ráno — i když bude odpoledne.</div></div>
+      </div>
+      <div class="trow">
+        <div class="ttime">15:00</div>
+        <div><div class="tlbl">Obřad</div><div class="tdesc">Slavnostní okamžik, kvůli kterému jsme se tu všichni sešli.</div></div>
+      </div>
+      <div class="trow">
+        <div class="ttime">16:00</div>
+        <div><div class="tlbl">Focení & raut</div><div class="tdesc">Společné foto, gratulace, přípitky a raut.</div></div>
+      </div>
+      <div class="trow">
+        <div class="ttime">17:00</div>
+        <div><div class="tlbl">Zábava</div><div class="tdesc">Hudba a tanec — venku do 22:00, pak přesouváme party dovnitř.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INFORMACE ══ -->
+<section id="info">
+  <div class="wrap">
+    <div class="sh">
+      <div class="ey">Vše, co potřebujete vědět</div>
+      <h2 class="st">Praktické informace</h2>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        
+        <h3>Dress code</h3>
+        <p>Oblečte se slavnostně — šaty nebo oblek, kravata ani motýlek nejsou povinností. Prostředí je venkovské, ale rádi bychom zachovali slavnostní ráz dne.</p>
+        <p>Jediná prosba: <strong style="color:var(--gold)">vyhněte se bílé a krémové</strong> — ty jsou vyhrazeny nevěstě. A obuv s rozumným podpatkem ocení vaše kotníky na trávníku.</p>
+      </div>
+
+      <div class="card">
+        
+        <h3>Ubytování</h3>
+        <p>Kapacita penzionu je omezená, doporučujeme proto ubytování v blízkém okolí — hotelů a penzionů v okolí Frýdku-Místku je dostatek.</p>
+        <p>Pro dobrodruhy: s sebou lze vzít i stan.</p>
+      </div>
+
+      <div class="card">
+        
+        <h3>Doprava</h3>
+        <p>Informace k parkování a případnému sdílenému svozu doplníme.</p>
+      </div>
+
+      <div class="card">
+        
+        <h3>Děti</h3>
+        <p>Z kapacitních důvodů prosíme, aby děti tentokrát zůstaly doma. Pokud to není možné, ozvěte se nám individuálně — určitě něco vymyslíme.</p>
+      </div>
+
+      <div class="card wide">
+        
+        <h3>Večerní program</h3>
+        <p>Venkovní prostor máme k dispozici do 22:00 — počítejte s tím při volbě obuvi a oblečení na pozdní hodiny. Po 22:00 přesouváme oslavu do interiéru a pokračujeme dál.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DARY ══ -->
+<section id="dary" class="alt">
+  <div class="wrap">
+    <div class="sh">
+      <div class="ey">Svatební dary</div>
+      <h2 class="st">Pár slov k darům</h2>
+    </div>
+    <p class="gifts-text">
+      Se svatebními dary si hlavu lámat nemusíte — <em>největším darem pro nás bude vaše přítomnost.</em>
+      Pokud nám přesto budete chtít něco dát, budeme rádi za příspěvek na naši společnou budoucnost.
+      <br><br>
+      A jedna prosba navíc: <em>nenoste prosím kytičky.</em> Nevěsta bude mít svou kytici a výzdoby květin bude dost — ušetřete si starosti a nám místo.
+    </p>
+  </div>
+</section>
+
+<!-- ══ RSVP ══ -->
+<section id="rsvp">
+  <div class="wrap">
+    <div class="sh">
+      <div class="ey">Potvrzení účasti</div>
+      <h2 class="st">Dáte nám vědět?</h2>
+      <p class="lede">Prosíme o vyplnění do <strong style="color:var(--gold);font-style:normal;">30. července 2026</strong>.</p>
+    </div>
+
+    <form class="fw" id="rsvpForm" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/formResponse"
+      method="POST">
+
+      <div class="fd">
+        <label for="jmeno">Jméno a příjmení *</label>
+        <input type="text" id="jmeno" name="entry.111111111" required placeholder="Vaše jméno">
+      </div>
+
+      <div class="fd">
+        <label>Zúčastníte se? *</label>
+        <div class="rg">
+          <label class="ro"><input type="radio" name="entry.222222222" value="Ano, přijdu" required> Ano, přijdu</label>
+          <label class="ro"><input type="radio" name="entry.222222222" value="Bohužel ne"> Bohužel ne</label>
+          <label class="ro"><input type="radio" name="entry.222222222" value="Zatím nevím"> Zatím nevím</label>
+        </div>
+      </div>
+
+      <div class="fd">
+        <label for="doprovod">Jména osob v doprovodu</label>
+        <input type="text" id="doprovod" name="entry.333333333" placeholder="např. Jana Nováková">
+      </div>
+
+      <div class="fd">
+        <label for="jidlo">Preference jídla / alergie</label>
+        <textarea id="jidlo" name="entry.444444444" placeholder="vegetariánské, bezlepkové, alergie na ořechy…"></textarea>
+      </div>
+
+      <div class="fd">
+        <label>Plánujete přespání v okolí?</label>
+        <div class="rg">
+          <label class="ro"><input type="radio" name="entry.555555555" value="Ano"> Ano</label>
+          <label class="ro"><input type="radio" name="entry.555555555" value="Ne"> Ne</label>
+          <label class="ro"><input type="radio" name="entry.555555555" value="Ještě nevím"> Ještě nevím</label>
+        </div>
+      </div>
+
+      <div class="fd">
+        <label>Potřebujete pomoc s dopravou?</label>
+        <div class="rg">
+          <label class="ro"><input type="radio" name="entry.666666666" value="Ano, zájem o svoz"> Ano, zájem o svoz</label>
+          <label class="ro"><input type="radio" name="entry.666666666" value="Ne, zvládnu sám"> Ne, zvládnu sám</label>
+        </div>
+      </div>
+
+      <div class="fd">
+        <label for="vzkaz">Vzkaz pro novomanžele</label>
+        <textarea id="vzkaz" name="entry.777777777" placeholder="Sem napište, co nám chcete říct…"></textarea>
+      </div>
+
+      <button type="submit" class="sbtn">Odeslat odpověď</button>
+      <p class="fn">* povinné pole</p>
+    </form>
+
+    <div class="fs" id="formSuccess">
+      <h3>Děkujeme!</h3>
+      <p>Vaše odpověď byla úspěšně odeslána. Těšíme se na vás!</p>
+    </div>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+  </div>
+</section>
+
+<!-- ══ KONTAKTY ══ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sh">
+      <div class="ey">Máte dotaz?</div>
+      <h2 class="st">Kontakty</h2>
+      <p class="lede">V den D volejte raději svědky než nás — budeme trochu zaneprázdnění.</p>
+    </div>
+    <div class="cts">
+      <div class="ct"><h4>Jméno TBD</h4><p>svědkyně · +420 6XX XXX XXX</p></div>
+      <div class="ct"><h4>Jméno TBD</h4><p>svědek · +420 6XX XXX XXX</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Těšíme se na vás &nbsp;<b>Vendulka &amp; Lukáš</b>
+</footer>
+
+<script>
+function updateCountdown(){
+  var w=new Date('2026-09-26T15:00:00'),n=new Date(),d=w-n;
+  if(d<=0){document.getElementById('countdown').innerHTML='<span style="font-style:italic;color:var(--gold2);font-size:20px;">Dnes je ten den!</span>';return;}
+  var days=Math.floor(d/864e5),
+      hrs=Math.floor((d%864e5)/36e5),
+      mins=Math.floor((d%36e5)/6e4);
+  document.getElementById('cd-days').textContent=days;
+  document.getElementById('cd-hours').textContent=String(hrs).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(mins).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,30000);
+
+document.getElementById('rsvpForm').addEventListener('submit',function(){
+  setTimeout(function(){
+    document.getElementById('rsvpForm').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  },700);
+});
+</script>
+</body>
+</html>
