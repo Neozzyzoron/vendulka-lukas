@@ -50,6 +50,13 @@ body{background:var(--bg);color:var(--txt);font-family:'Cormorant Garamond',seri
 .nav{position:sticky;top:0;z-index:100;text-align:center;padding:18px 0;background:var(--bg2);border-bottom:1px solid var(--line);backdrop-filter:blur(4px);}
 .nav a{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--txt2);text-decoration:none;margin:0 16px;transition:color .2s;}
 .nav a:hover{color:var(--gold);}
+.nav-rsvp-full{display:inline;}
+.nav-rsvp-short{display:none;}
+@media(max-width:680px){
+  .nav a{margin:0 10px;font-size:10px;letter-spacing:.18em;}
+  .nav-rsvp-full{display:none;}
+  .nav-rsvp-short{display:inline;}
+}
 
 /* ── TYPE SCALE: 3 sizes for all content ── */
 /* S — labels/eyebrows: 12px Jost uppercase  */
@@ -324,7 +331,7 @@ footer b{color:var(--gold);font-weight:500;font-style:normal;}
   <a href="#program">Program</a>
   <a href="#info">Informace</a>
   <a href="#dary">Dary</a>
-  <a href="#rsvp">Potvrzení účasti</a>
+  <a href="#rsvp"><span class="nav-rsvp-full">Potvrzení účasti</span><span class="nav-rsvp-short">Účast</span></a>
 </nav>
 
 <!-- ══ MÍSTO ══ -->
@@ -447,53 +454,53 @@ footer b{color:var(--gold);font-weight:500;font-style:normal;}
     </div>
 
     <form class="fw" id="rsvpForm" target="hidden_iframe"
-      action="https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/formResponse"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfDmo2PiHZpnrloIEHJZNrBWT9-urkS-7Hx3gyIe1hK4dr1_A/formResponse"
       method="POST">
 
       <div class="fd">
         <label for="jmeno">Jméno a příjmení *</label>
-        <input type="text" id="jmeno" name="entry.111111111" required placeholder="Vaše jméno">
+        <input type="text" id="jmeno" name="entry.773923710" required placeholder="Vaše jméno">
       </div>
 
       <div class="fd">
         <label>Zúčastníte se? *</label>
         <div class="rg">
-          <label class="ro"><input type="radio" name="entry.222222222" value="Ano, přijdu" required> Ano, přijdu</label>
-          <label class="ro"><input type="radio" name="entry.222222222" value="Bohužel ne"> Bohužel ne</label>
-          <label class="ro"><input type="radio" name="entry.222222222" value="Zatím nevím"> Zatím nevím</label>
+          <label class="ro"><input type="radio" name="entry.693315779" value="Ano přijdu" required> Ano, přijdu</label>
+          <label class="ro"><input type="radio" name="entry.693315779" value="Bohužel ne"> Bohužel ne</label>
+          <label class="ro"><input type="radio" name="entry.693315779" value="Zatím nevím"> Zatím nevím</label>
         </div>
       </div>
 
       <div class="fd">
         <label for="doprovod">Jména osob v doprovodu</label>
-        <input type="text" id="doprovod" name="entry.333333333" placeholder="např. Jana Nováková">
+        <input type="text" id="doprovod" name="entry.1720158985" placeholder="např. Jana Nováková">
       </div>
 
       <div class="fd">
         <label for="jidlo">Preference jídla / alergie</label>
-        <textarea id="jidlo" name="entry.444444444" placeholder="vegetariánské, bezlepkové, alergie na ořechy…"></textarea>
+        <textarea id="jidlo" name="entry.1603380133" placeholder="vegetariánské, bezlepkové, alergie na ořechy…"></textarea>
       </div>
 
       <div class="fd">
         <label>Plánujete přespání v okolí?</label>
         <div class="rg">
-          <label class="ro"><input type="radio" name="entry.555555555" value="Ano"> Ano</label>
-          <label class="ro"><input type="radio" name="entry.555555555" value="Ne"> Ne</label>
-          <label class="ro"><input type="radio" name="entry.555555555" value="Ještě nevím"> Ještě nevím</label>
+          <label class="ro"><input type="radio" name="entry.1166091525" value="Ano"> Ano</label>
+          <label class="ro"><input type="radio" name="entry.1166091525" value="Ne"> Ne</label>
+          <label class="ro"><input type="radio" name="entry.1166091525" value="Ještě nevím"> Ještě nevím</label>
         </div>
       </div>
 
       <div class="fd">
         <label>Potřebujete pomoc s dopravou?</label>
         <div class="rg">
-          <label class="ro"><input type="radio" name="entry.666666666" value="Ano, zájem o svoz"> Ano, zájem o svoz</label>
-          <label class="ro"><input type="radio" name="entry.666666666" value="Ne, zvládnu sám"> Ne, zvládnu sám</label>
+          <label class="ro"><input type="radio" name="entry.219117598" value="Ano"> Ano, zájem o svoz</label>
+          <label class="ro"><input type="radio" name="entry.219117598" value="Ne zvládnu to sám"> Ne, zvládnu sám</label>
         </div>
       </div>
 
       <div class="fd">
         <label for="vzkaz">Vzkaz pro novomanžele</label>
-        <textarea id="vzkaz" name="entry.777777777" placeholder="Sem napište, co nám chcete říct…"></textarea>
+        <textarea id="vzkaz" name="entry.30378047" placeholder="Sem napište, co nám chcete říct…"></textarea>
       </div>
 
       <button type="submit" class="sbtn">Odeslat odpověď</button>
